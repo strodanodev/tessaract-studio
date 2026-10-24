@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tessaract Studio</title>
+<meta name="description" content="Tessaract Studio: build a Web3 trading card game visually. Edit cards, rules and hero powers, balance it with bot-vs-bot sims, and export a game Tessaract builds and deploys." />
+<link rel="icon" href="./favicon.svg" />
+<link rel="stylesheet" href="./styles.css" />
+<link rel="modulepreload" href="./engine/tessaract.js" />
+<script type="module" src="./app.js"></script>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><b>Tessaract</b> Studio</div>
+  <h1 id="game-title">…</h1>
+  <div class="actions">
+    <button id="new" type="button" class="ghost">New</button>
+    <label class="ghost file">Open<input id="open" type="file" accept=".json,application/json" /></label>
+    <button id="copy" type="button" class="ghost">Copy JSON</button>
+    <button id="export" type="button" class="primary">Export game</button>
+  </div>
+</header>
+<nav id="tabs" class="tabs" aria-label="Sections">
+  <button type="button" data-tab="overview">Overview</button>
+  <button type="button" data-tab="cards">Cards</button>
+  <button type="button" data-tab="elements">Elements</button>
+  <button type="button" data-tab="deck">Deck</button>
+  <button type="button" data-tab="rules">Rules &amp; champions</button>
+  <button type="button" data-tab="balance">Balance</button>
+  <button type="button" data-tab="json">JSON</button>
+</nav>
+<div class="layout">
+  <main id="main" aria-live="polite"></main>
+  <aside id="status" aria-live="polite"></aside>
+</div>
+<footer class="foot">Built on <a href="https://github.com/strodanodev/tessaract" rel="noopener">Tessaract</a> · your draft is saved in this browser only</footer>
+</body>
+</html>
