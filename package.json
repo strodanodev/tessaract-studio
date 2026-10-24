@@ -14,6 +14,6 @@
     "test": "node --test \"test/*.test.mjs\""
   },
   "devDependencies": {
-    "tessaract": "github:strodanodev/tessaract"
+    "tessaract": "github:strodanodev/tessaract#v0.9.0"
   }
 }
