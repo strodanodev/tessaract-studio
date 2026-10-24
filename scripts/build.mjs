@@ -2,14 +2,16 @@
 // web/engine/tessaract.js, and copy its starter game as Studio's blank project.
 //
 //   node scripts/build.mjs        (SDK from node_modules/tessaract, or TESSARACT_DIR, or the monorepo's packages/tessaract)
-import { copyFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, realpathSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const candidates = [process.env.TESSARACT_DIR, join(ROOT, 'node_modules', 'tessaract'), join(ROOT, '..', '..', 'packages', 'tessaract')].filter(Boolean);
-const sdk = candidates.map((d) => resolve(d)).find((d) => existsSync(join(d, 'src', 'browser.ts')));
+// The real path: pnpm links the SDK as a symlink, and its own dependencies sit next to the real folder.
+const found = candidates.map((d) => resolve(d)).find((d) => existsSync(join(d, 'src', 'browser.ts')));
+const sdk = found && realpathSync(found);
 if (!sdk) { console.error(`no Tessaract SDK found (looked in ${candidates.join(', ')}); run pnpm install`); process.exit(1); }
 const version = JSON.parse(readFileSync(join(sdk, 'package.json'), 'utf8')).version;
 // esbuild comes with the SDK (its runtime dependency) or this package's own devDependencies.
