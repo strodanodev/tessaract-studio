@@ -1,0 +1,5 @@
+# Deploy only the built site (web/)
+node_modules
+scripts
+test
+.github
